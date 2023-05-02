@@ -38,11 +38,10 @@ const Signup = () => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [studentID, setStudentID] = useState('')
-  const [batch, setBatch] = useState('')
+  const [session, setSession] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
 
-  // if the user is alumnus, then isAlumni is set to true
   const { user, signup, createUserData, upload, setUserInfo } = useAuth()
 
   // profile picture change
@@ -90,8 +89,8 @@ const Signup = () => {
     else if (e.target.name == 'roll') {
       setRoll(e.target.value)
     }
-    else if (e.target.name == 'batch') {
-      setBatch(e.target.value)
+    else if (e.target.name == 'session') {
+      setSession(e.target.value)
     }
     else if (e.target.name == 'brn') {
       setBrn(e.target.value)
@@ -128,7 +127,7 @@ const Signup = () => {
       photoURL: "https://dummyimage.com/200x200",
       achievements: [],
       socials: {},
-      batch: batch,
+      session: session,
       class: grade,
       roll: roll,
       studentID: studentID,
@@ -242,7 +241,7 @@ const Signup = () => {
             />
             <SelectionBox
               label="Session"
-              name="batch"
+              name="session"
               options={['2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016', '2016-2017', '2017-2018', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024']}
               handleChange={handleChange}
             />
