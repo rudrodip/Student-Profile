@@ -27,18 +27,18 @@ const Navbar = () => {
 								<svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
 							</a>
 							<ul className="p-2 bg-gray-700">
-								<li><a>Internal</a></li>
-								<li><a>Board</a></li>
+								<li><a href="http://180.211.183.206/EasyCollegeMate/public/result" target="_blank">Internal</a></li>
+								<li><a href="https://rc.gov.bd/hsc-result-final/" target="_blank" >Board</a></li>
 							</ul>
 						</li>
-						<li><a>Help</a></li>
+						<li><Link href="/help">Help</Link></li>
 					</ul>
 				</div>
 				<Link className="btn btn-ghost normal-case text-xl" href="/">Student Profile</Link>
 			</div>
 			<div className="navbar-center hidden lg:flex">
 				<ul className="menu menu-horizontal px-1">
-				<li><Link href="/notices">Notices</Link></li>
+					<li><Link href="/notices">Notices</Link></li>
 					<li tabIndex={0}>
 						<a>
 							Result
@@ -69,7 +69,7 @@ const Navbar = () => {
 						<li><a onClick={handleLogout}>Logout</a></li>
 					</ul>
 				</div>
-		</div>
+			</div>
 		</div >
 	)
 }
