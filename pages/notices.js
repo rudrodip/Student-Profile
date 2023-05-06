@@ -4,6 +4,8 @@ import { db } from '@/src/config/firebase.config'
 import {
   collection,
   getDocs,
+  query,
+  orderBy
 } from "firebase/firestore";
 
 const Notices = () => {
@@ -12,7 +14,8 @@ const Notices = () => {
 
   useEffect(() => {
     const docRef = collection(db, "notices")
-    getDocs(docRef)
+    const queryParam = query(docRef, orderBy("time"))
+    getDocs(queryParam)
       .then((snap) => setNotices(snap.docs.map(doc => ({ id: doc.id, ...doc.data() }))))
       .catch(err => console.log(err))
   }, [])
