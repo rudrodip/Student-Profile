@@ -144,6 +144,7 @@ const Signup = () => {
         let url = await upload(image, user);
         data["photoURL"] = url;
       }
+      data["uid"] = user.uid
       createUserData(user, data)
       setUserInfo(data)
     } catch (error) {
