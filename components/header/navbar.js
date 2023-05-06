@@ -31,7 +31,8 @@ const Navbar = () => {
 								<li><a href="https://rc.gov.bd/hsc-result-final/" target="_blank" >Board</a></li>
 							</ul>
 						</li>
-						<li><Link href="/help">Help</Link></li>
+						<li><Link href="/help">Ask</Link></li>
+						<li><Link href="/questions">Questions</Link></li>
 					</ul>
 				</div>
 				<Link className="btn btn-ghost normal-case text-xl" href="/">Student Profile</Link>
