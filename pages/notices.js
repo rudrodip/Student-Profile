@@ -29,7 +29,7 @@ const Notices = () => {
           <table className="w-full text-sm text-left text-gray-400">
             <thead className="text-xs uppercase bg-gray-700 text-gray-400">
               <tr>
-                <th scope="col" className="px-6 py-3">Description</th>
+                <th scope="col" className="px-6 py-3">Title</th>
                 <th scope="col" className="px-6 py-3">Time</th>
                 <th scope="col" className="px-6 py-3">Download</th>
               </tr>
@@ -39,14 +39,14 @@ const Notices = () => {
                 notices.map((notice) => {
                   return (
                     <tr
-                      key={notice.id}
+                      key={notice?.id}
                       className="border-b bg-gray-800 border-gray-700"
                     >
-                      <td className="px-6 py-4">{notice.desc}</td>
-                      <td className="px-6 py-4">{notice.time}</td>
+                      <td className="px-6 py-4">{notice?.title}</td>
+                      <td className="px-6 py-4">{notice?.time.toDate().toDateString()}</td>
                       <td className="px-6 py-4">
                         <a
-                          href={notice?.download}
+                          href={notice?.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-blue-500"

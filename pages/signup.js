@@ -41,6 +41,7 @@ const Signup = () => {
   const [session, setSession] = useState('')
   const [grade, setGrade] = useState('')
   const [roll, setRoll] = useState('')
+  const [gender, setGender] = useState('')
 
   const { user, signup, createUserData, upload, setUserInfo } = useAuth()
 
@@ -95,6 +96,9 @@ const Signup = () => {
     else if (e.target.name == 'brn') {
       setBrn(e.target.value)
     }
+    else if (e.target.name == 'gender') {
+      setGender(e.target.value)
+    }
   }
 
   const validateMemberCode = () => {
@@ -122,6 +126,7 @@ const Signup = () => {
       fcontact: fcontact,
       mcontact: mcontact,
       brn: brn,
+      gender: gender,
       email: email,
       phone: phone,
       photoURL: "https://dummyimage.com/200x200",
@@ -202,48 +207,63 @@ const Signup = () => {
               placeholder="Fullname"
               name="name"
               handleChange={handleChange}
+              value={name}
             />
             <TextFormField
               label="Father's name"
               placeholder="Father's name"
               name="fname"
               handleChange={handleChange}
+              value={fname}
             />
             <TextFormField
               label="Mother's name"
               placeholder="Mother's name"
               name="mname"
               handleChange={handleChange}
+              value={mname}
             />
             <TextFormField
               label="Father's contact number"
               placeholder="father's contact number"
               name="fcontact"
               handleChange={handleChange}
+              value={fcontact}
             />
             <TextFormField
               label="Mother's contact number"
               placeholder="mother's contact number"
               name="mcontact"
               handleChange={handleChange}
+              value={mcontact}
             />
             <TextFormField
               label="Birth Registration Number"
               placeholder="birth registration number"
               name="brn"
               handleChange={handleChange}
+              value={brn}
+            />
+            <SelectionBox
+              label="Gender"
+              name="gender"
+              options={['Male', 'Female', 'Other']}
+              handleChange={handleChange}
+              value={gender}
             />
             <TextFormField
               label="Phone"
               placeholder="e.g. 01771122334"
               name="phone"
               handleChange={handleChange}
+              value={phone}
             />
             <SelectionBox
               label="Session"
               name="session"
-              options={['2010-2011', '2011-2012', '2012-2013', '2013-2014', '2014-2015', '2015-2016', '2016-2017', '2017-2018', '2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024']}
+              options={['2019-2020', '2020-2021', '2021-2022', '2022-2023', '2023-2024']}
               handleChange={handleChange}
+              value={session}
             />
 
             <TextFormField
@@ -251,29 +271,34 @@ const Signup = () => {
               placeholder="e.g. 11"
               name="class"
               handleChange={handleChange}
+              value={grade}
             />
             <TextFormField
               label="Roll"
               placeholder="e.g. 155"
               name="roll"
               handleChange={handleChange}
+              value={roll}
             />
             <TextFormField
               label="StudentID"
               placeholder="e.g. 898923213"
               name="studentID"
               handleChange={handleChange}
+              value={studentID}
             />
             <TextFormField
               label="Email Address"
               placeholder="e.g. example@gmail.com"
               name="email"
               handleChange={handleChange}
+              value={email}
             />
             <PasswordInputField
               name='password'
               handleChange={handleChange}
               showPassToggle={true}
+              value={password}
             />
           </div>
           {
