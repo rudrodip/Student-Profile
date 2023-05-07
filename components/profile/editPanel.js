@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import 'react-toastify/dist/ReactToastify.css';
 import TextFormField from '../form/textFormField'
+import SelectionBox from '../form/selectionBox';
 import { FileInputButton } from '../fileInput';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
 
@@ -19,6 +21,10 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
   const [fcontact, setFcontact] = useState(userInfo?.fcontact)
   const [mcontact, setMcontact] = useState(userInfo?.mcontact)
   const [phone, setPhone] = useState(userInfo?.phone)
+  const [skills, setSkills] = useState(userInfo?.skills || [])
+  const [skill, setSkill] = useState('Coding')
+  const [achievements, setAchievements] = useState(userInfo?.achievements || [])
+  const [achievement, setAchievement] = useState('')
 
   // profile picture change
   const onImageChange = async (image) => {
@@ -33,6 +39,20 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
   const deselectImage = () => {
     setImage(null)
     setTempImageUrl(null)
+  }
+
+  const handleDeleteAcv = (item) => {
+    item.preventDefault()
+    setChanges(true)
+    achievements.splice(achievements.indexOf(item))
+    setAchievements([...achievements])
+  }
+
+  const handleDeleteSkill = (item) => {
+    item.preventDefault()
+    setChanges(true)
+    skills.splice(skills.indexOf(item))
+    setSkills([...skills])
   }
 
   // form value change handler
@@ -55,6 +75,12 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
     }
     else if (e.target.name == 'phone') {
       setPhone(e.target.value)
+    }
+    else if (e.target.name == 'achievement') {
+      setAchievement(e.target.value)
+    }
+    else if (e.target.name == 'skill') {
+      setSkill(e.target.value)
     }
   }
 
@@ -81,6 +107,8 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
         fcontact: fcontact,
         mcontact: mcontact,
         phone: phone,
+        achievements: achievements,
+        skills: skills
       }
       if (image) {
         userInfo.photoURL = URL.createObjectURL(image);
@@ -93,7 +121,7 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
       })
       updateUserData(user, data);
       toast("Updated", successToastConfig);
-      setUserInfo({...userInfo})
+      setUserInfo({ ...userInfo })
     } catch (error) {
       console.log(error);
     }
@@ -172,6 +200,59 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
               handleChange={handleChange}
             />
           </div>
+          <div className='lg:w-2/3 w-full container mx-auto my-5'>
+            <h1 className='font-bold text-center text-xl'>Add Achievements</h1>
+            {
+              achievements.map(i => {
+                return (
+                  <Achievement key={achievements.indexOf(i)} text={`${achievements.indexOf(i)+1}. ${i}`} handleDelete={handleDeleteAcv} />
+                )
+              })
+            }
+            <TextFormField
+              label=""
+              value={achievement}
+              name="achievement"
+              handleChange={handleChange}
+            />
+            <button 
+              className='btn btn-info mt-2' 
+              onClick={(e) => {
+                e.preventDefault()
+                achievements.push(achievement)
+                setAchievements([...achievements])
+              }
+            }
+            >Add
+            </button>
+          </div>
+          <div className='lg:w-2/3 w-full container mx-auto my-5'>
+            <h1 className='font-bold text-center text-xl'>Add Skills</h1>
+            {
+              skills.map(i => {
+                return (
+                  <Skill key={skills.indexOf(i)} text={`${skills.indexOf(i)+1}. ${i}`} handleDelete={handleDeleteSkill} />
+                )
+              })
+            }
+            <SelectionBox
+              label="Skill"
+              name="skill"
+              options={["Critical thinking", "Time management", "Effective communication", "Problem-solving", "Leadership", "Collaboration", "Information literacy", "Digital literacy", "Financial literacy", "Public speaking", "Teamwork", "Research", "Writing", "Study skills", "Coding", "Athleticism", "Team sports", "Individual sports", "Yoga", "Dance", "Mathematics", "Science", "History", "Foreign language proficiency", "Debate", "Persuasion", "Negotiation", "Diplomacy"]            }
+              handleChange={handleChange}
+              value={skill}
+            />
+            <button 
+              className='btn btn-info mt-2' 
+              onClick={(e) => {
+                e.preventDefault()
+                skills.push(skill)
+                setSkills([...skills])
+              }
+            }
+            >Add
+            </button>
+          </div>
           {
             loading &&
 
@@ -193,7 +274,7 @@ const EditPanel = ({ user, userInfo, upload, updateUserData, setUserInfo }) => {
             disabled={loading}
           >Save Edit
           </button>
-          
+
           {changes &&
             <button
               className="ml-2 px-6 py-2 leading-5 text-white transition-all duration-200 transform bg-gradient-to-r from-blue-400 to-cyan-400 rounded-md hover:scale-110 focus:outline-none focus:bg-gray-600"
@@ -228,4 +309,22 @@ const warnConfig = {
   pauseOnHover: true,
   draggable: true,
   progress: undefined,
+}
+
+const Achievement = ({ text, handleDelete }) => {
+  return (
+    <div className='flex justify-between my-1'>
+      <p>{text}</p>
+      <button className='btn btn-warning btn-sm' onClick={handleDelete}>Delete</button>
+    </div>
+  )
+}
+
+const Skill = ({ text, handleDelete }) => {
+  return (
+    <div className='flex justify-between my-1'>
+      <p>{text}</p>
+      <button className='btn btn-warning btn-sm' onClick={handleDelete}>Delete</button>
+    </div>
+  )
 }

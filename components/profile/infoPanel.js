@@ -48,6 +48,22 @@ const InfoPanel = ({ userInfo }) => {
         <span className='font-semibold'>Birth Registration Number: </span>
         <span>{userInfo?.brn}</span>
       </div>
+      <h1 className='text-blue-500 my-3 font-bold text-xl'>Achievements</h1>
+      {
+        userInfo?.achievements.map(i => {
+          return (
+            <p key={userInfo?.achievements.indexOf(i)}>{userInfo?.achievements.indexOf(i) + 1}. {i}</p>
+          )
+        })
+      }
+      <h1 className='text-blue-500 my-3 font-bold text-xl'>Skills</h1>
+      {
+        userInfo?.skills.map(i => {
+          return (
+            <p key={userInfo?.skills.indexOf(i)}>{userInfo?.skills.indexOf(i) + 1}. {i}</p>
+          )
+        })
+      }
     </div>
   )
 }

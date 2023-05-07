@@ -131,11 +131,13 @@ const Signup = () => {
       phone: phone,
       photoURL: "https://dummyimage.com/200x200",
       achievements: [],
+      skills: [],
       socials: {},
       session: session,
       class: grade,
       roll: roll,
       studentID: studentID,
+      role: "student"
     }
 
     try {

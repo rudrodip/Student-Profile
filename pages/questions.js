@@ -64,6 +64,7 @@ const Questions = () => {
               name="subject"
               options={["Physics", "Chemistry", "Math"]}
               handleChange={handleChange}
+              value={subject}
             />
           </div>
         </div>

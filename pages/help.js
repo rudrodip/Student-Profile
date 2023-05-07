@@ -36,6 +36,7 @@ const Help = () => {
       ques: question,
       time: date,
       studentID: userInfo?.studentID,
+      subject: subject
     }
 
     try {
@@ -81,8 +82,7 @@ const Help = () => {
               name="subject"
               value={subject}
               options={["Physics", "Chemistry", "Math"]}
-              handleChange={(e) => setSubject(e.target.value)
-              }
+              handleChange={(e) => setSubject(e.target.value)}
             />
             <p className='divider'></p>
             <FileInputButton
