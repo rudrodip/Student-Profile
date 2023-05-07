@@ -56,7 +56,7 @@ const Questions = () => {
         <div className='max-x-xl'>
           <div className="form-control w-32">
             <label className="cursor-pointer label">
-              <span className="label-text">My Questions</span>
+              <span className="label-text text-gray-200">My Questions</span>
               <input type="checkbox" name="personal" checked={personal} className="checkbox checkbox-info" onChange={handleChange} />
             </label>
             <SelectionBox
