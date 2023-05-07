@@ -135,7 +135,7 @@ const Signup = () => {
       socials: {},
       session: session,
       class: grade,
-      roll: roll,
+      roll: parseInt(roll),
       studentID: studentID,
       role: "student"
     }
